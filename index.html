@@ -251,8 +251,11 @@ function bookNow(){
   return;
  }
 
- fetch("https://script.google.com/macros/s/AKfycbz_B-dnbSZaVDu7tc0mIYLSuoGvE7U_Uq8H-FHV1ojqYiPBIoMQdsDLLJR-ArEYGvCA/exec",{
+fetch("https://script.google.com/macros/s/AKfycbxgUP9OLP9jtKu8wQXSdMqunqOIZn5Tvz7Fv809G26ANpxohtkLHS4NHb9oRdgz5fM9/exec",{
   method:"POST",
+  headers:{
+    "Content-Type":"application/json"
+  },
   body: JSON.stringify({
     name,
     phone,
@@ -261,7 +264,9 @@ function bookNow(){
     status:"รอคิว",
     time:new Date().toLocaleString()
   })
- });
+})
+.then(()=>alert("จองสำเร็จ"))
+.catch(()=>alert("ส่งไม่สำเร็จ"));
 
  const msg=`จอง\n${name}\n${phone}\n${breed}\n${service}`;
  window.location.href=`https://line.me/R/msg/text/?${encodeURIComponent(msg)}`;
