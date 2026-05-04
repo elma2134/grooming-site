@@ -3,44 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <title>Admin Dashboard</title>
- 
+
 <script>
 if(localStorage.getItem("admin") !== "true"){
- window.location.href="login.html";
+ location.href="login.html";
 }
 </script>
- 
+
 <style>
 body{
- font-family:Arial;
- background:#111;
+ font-family:'Inter',sans-serif;
+ background:#0f172a;
  color:white;
+ margin:0;
  padding:20px;
 }
 
-h1{margin-bottom:20px}
-
-.card{
- background:#1e1e1e;
- padding:15px;
- border-radius:15px;
- margin-bottom:10px;
+/* HEADER */
+.header{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:20px;
 }
 
+h1{
+ font-size:22px;
+}
+
+/* BUTTON */
 .btn{
  padding:8px 12px;
  border:none;
  border-radius:10px;
  cursor:pointer;
+ font-weight:bold;
 }
 
-.done{background:#06C755;color:white}
-</style>
+/* STATUS COLORS */
+.wait{background:#f59e0b}
+.doing{background:#3b82f6}
+.done{background:#10b981}
 
+/* CARD */
+.card{
+ background:rgba(255,255,255,0.05);
+ backdrop-filter:blur(10px);
+ border-radius:20px;
+ padding:15px;
+ margin-bottom:12px;
+ box-shadow:0 10px 30px rgba(0,0,0,0.2);
+ animation:fade 0.4s ease;
+}
+
+@keyframes fade{
+ from{opacity:0; transform:translateY(10px)}
+ to{opacity:1; transform:translateY(0)}
+}
+
+/* ROW */
+.row{
+ display:flex;
+ justify-content:space-between;
+ margin-top:10px;
+ gap:5px;
+}
+
+/* BADGE */
+.badge{
+ padding:5px 10px;
+ border-radius:20px;
+ font-size:12px;
+}
+</style>
 </head>
+
 <body>
 
-<h1>📋 รายการจอง</h1>
+<div class="header">
+ <h1>📋 ระบบจัดการคิว</h1>
+ <button onclick="logout()" class="btn" style="background:#ef4444;color:white">Logout</button>
+</div>
 
 <div id="list"></div>
 
@@ -56,27 +99,52 @@ async function loadData(){
  list.innerHTML="";
 
  data.reverse().forEach((item,i)=>{
+
+  let statusColor = "wait";
+  if(item.status==="กำลังทำ") statusColor="doing";
+  if(item.status==="เสร็จแล้ว") statusColor="done";
+
   list.innerHTML+=`
   <div class="card">
     <b>${item.name}</b><br>
     📞 ${item.phone}<br>
+    🐶 ${item.breed || "-"}<br>
     🕒 ${item.time}<br>
-    🕒 ${item.breed}<br>
-    📌 ${item.status}
+
+    <div class="badge ${statusColor}">
+      ${item.status || "รอคิว"}
+    </div>
+
+    <div class="row">
+      <button class="btn wait" onclick="updateStatus(${i},'รอคิว')">รอ</button>
+      <button class="btn doing" onclick="updateStatus(${i},'กำลังทำ')">ทำ</button>
+      <button class="btn done" onclick="updateStatus(${i},'เสร็จแล้ว')">เสร็จ</button>
+    </div>
   </div>
   `;
  });
- <button onclick="logout()">Logout</button>
+}
 
-<script>
+/* UPDATE STATUS */
+async function updateStatus(index,status){
+ await fetch(API_URL,{
+  method:"POST",
+  body:JSON.stringify({
+    action:"update",
+    index:index,
+    status:status
+  })
+ });
+ loadData();
+}
+
+/* LOGOUT */
 function logout(){
  localStorage.removeItem("admin");
- window.location.href="login.html";
-}
-</script>
+ location.href="login.html";
 }
 
-// auto refresh
+/* AUTO REFRESH */
 setInterval(loadData,3000);
 loadData();
 
