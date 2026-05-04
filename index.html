@@ -25,7 +25,20 @@ fbq('track', 'PageView');
 </script>
 
 <style>
-body{font-family:'Segoe UI',Arial;margin:0;background:#fff;color:#333;padding-top:40px}
+body{
+ font-family:'Segoe UI',Arial;
+ margin:0;
+ background:#fff;
+ color:#333;
+ padding-top:40px;
+}
+
+/* ===== CENTER ===== */
+.container{
+ max-width:500px;
+ margin:auto;
+ padding:0 15px;
+}
 
 /* TOP */
 #topbar{
@@ -38,53 +51,64 @@ body{font-family:'Segoe UI',Arial;margin:0;background:#fff;color:#333;padding-to
 /* HERO */
 .hero{
  background:linear-gradient(120deg,#ffe4ec,#e6f7ff);
- text-align:center;padding:60px 20px;
+ text-align:center;
+ padding:60px 20px;
  border-radius:0 0 30px 30px;
 }
-.hero h1{font-size:28px;margin:10px 0}
 .price{font-size:26px;font-weight:bold}
 
 /* BUTTON */
 .btn{
  background:#06C755;color:white;
  padding:15px 25px;border-radius:30px;
- text-decoration:none;display:inline-block;margin-top:10px;
- box-shadow:0 5px 15px rgba(0,0,0,0.15);
- transition:0.3s;
+ text-decoration:none;
+ display:inline-block;
+ margin-top:10px;
 }
-.btn:hover{transform:translateY(-2px)}
-
 .fb-btn{
  background:#1877f2;color:white;
  padding:12px 22px;border-radius:30px;
- text-decoration:none;display:inline-block;margin-top:10px;
+ text-decoration:none;
+ display:inline-block;
+ margin-top:10px;
 }
 
 /* SECTION */
 section{
- margin:20px;padding:25px;
+ margin:20px 0;
+ padding:20px;
  border-radius:20px;
  box-shadow:0 10px 30px rgba(0,0,0,0.05);
+ text-align:center;
 }
 
 /* REVIEW */
 .review{
  border:1px solid #ffe0ea;
  padding:10px;margin:10px auto;
- border-radius:10px;max-width:300px;
+ border-radius:10px;
+ max-width:280px;
 }
 
 /* FORM */
 input{
- width:220px;padding:10px;margin:5px;
- border-radius:10px;border:1px solid #ddd;
+ width:100%;
+ max-width:280px;
+ padding:10px;
+ margin:5px;
+ border-radius:10px;
+ border:1px solid #ddd;
+}
+
+/* FB CENTER */
+.fb-box{
+ display:flex;
+ justify-content:center;
 }
 
 /* FLOAT */
 .fab{position:fixed;bottom:15px;right:15px;background:#06C755;color:white;padding:15px;border-radius:50%;}
 .fab-call{position:fixed;bottom:80px;right:20px;background:#ff4d6d;color:white;padding:15px;border-radius:50%;}
-
-/* ADMIN BTN */
 .fab-admin{
  position:fixed;
  bottom:20px;
@@ -93,15 +117,8 @@ input{
  color:white;
  padding:12px;
  border-radius:50%;
- opacity:0.6;
+ opacity:0.7;
 }
-
-/* CTA */
-#stickyCTA{
- position:fixed;bottom:0;width:100%;
- background:#06C755;text-align:center;padding:15px;
-}
-#stickyCTA a{color:white;font-weight:bold;text-decoration:none}
 
 /* POPUP */
 #popup{
@@ -119,22 +136,14 @@ input{
 
 <div id="topbar">🔥 เหลือ <span id="slot">4</span> คิว!</div>
 
+<div class="container">
+
 <div class="hero">
-<h1>🐶 Happy Grooming Spa Cat&Dog🐱</h1>
+<h1>🐶 Happy Grooming Spa 🐱</h1>
 <p>สะอาด หอม น่ารักขึ้นทันที</p>
 <div class="price">เริ่มต้น 250 บาท</div>
-<p>⬇จองผ่านไลน์ Official ได้เลยตอนนี้⬇</p>
 
-<a href="https://line.me/R/ti/p/@groomingspa" class="btn"
-onclick="fbq('trackCustom','LineClick')">จองผ่าน LINE OA</a>
-
-<br>
-<a href="https://www.facebook.com/happycatspagrooming" target="_blank"
-class="fb-btn" onclick="fbq('trackCustom','FBClick')">📘 Facebook</a>
-
-<div style="margin-top:10px;font-size:13px;color:#666;">
-⭐ รีวิวจริง • บริการดี • ปลอดภัย
-</div>
+<a href="https://line.me/R/ti/p/@groomingspa" class="btn">จองผ่าน LINE</a><br> <a href="https://www.facebook.com/happycatspagrooming" target="_blank" class="fb-btn">📘 Facebook</a>
 
 <div style="margin-top:10px;color:#ff4d6d;">
 ⏳ โปรหมดใน: <span id="time">05:00</span>
@@ -150,11 +159,13 @@ class="fb-btn" onclick="fbq('trackCustom','FBClick')">📘 Facebook</a>
 
 <section>
 <h2>📘 Facebook</h2>
-<div class="fb-page"
-data-href="https://www.facebook.com/happycatspagrooming"
-data-tabs="timeline"
-data-width="940"
-data-height="800">
+<div class="fb-box">
+  <div class="fb-page"
+    data-href="https://www.facebook.com/happycatspagrooming"
+    data-tabs="timeline"
+    data-width="340"
+    data-height="400">
+  </div>
 </div>
 </section>
 
@@ -165,59 +176,17 @@ data-height="800">
 <button onclick="bookNow()" class="btn">ยืนยันจอง</button>
 </section>
 
-<a href="admin.html" class="fab-admin">⚙️</a>
+</div>
 
-<a href="tel:0961372568" class="fab-call"
-onclick="fbq('trackCustom','CallClick')">📞</a>
-
-<a href="https://line.me/R/ti/p/@groomingspa" class="fab"
-onclick="fbq('trackCustom','LineClick')">💬</a>
+<a href="admin.html" class="fab-admin">⚙️</a> <a href="tel:0961372568" class="fab-call">📞</a> <a href="https://line.me/R/ti/p/@groomingspa" class="fab">💬</a>
 
 <div id="popup"></div>
-/* ===== CENTER LAYOUT ===== */
-.container{
- max-width:500px;
- margin:auto;
- padding:0 15px;
-}
-
-/* จัด form ให้อยู่กลาง */
-section{
- text-align:center;
-}
-
-/* input เต็มสวย */
-input{
- width:100%;
- max-width:280px;
-}
-
-/* facebook center */
-.fb-page{
- margin:auto;
-}
-
-/* hero จำกัดความกว้าง */
-.hero{
- max-width:500px;
- margin:auto;
-}
-
-/* review center */
-.review{
- text-align:center;
-}
-
-</a>
-</div>
 
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous"
-src="https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v18.0">
-</script>
+src="https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v18.0"></script>
 
 <script>
-// COUNTDOWN
 let time=300;
 setInterval(()=>{
  if(time>0){
@@ -228,7 +197,6 @@ setInterval(()=>{
  }
 },1000);
 
-// POPUP
 const names=["สมชาย","น้ำ","ฟ้า","เจน"];
 setInterval(()=>{
  const popup=document.getElementById('popup');
@@ -237,14 +205,11 @@ setInterval(()=>{
  setTimeout(()=>popup.style.display='none',3000);
 },9000);
 
-// BOOK
 function bookNow(){
  const name=document.getElementById('name').value;
  const phone=document.getElementById('phone').value;
 
  if(!name||!phone){alert("กรอกข้อมูล");return;}
-
- fbq('track','Purchase',{value:250,currency:'THB'});
 
  const msg=`จอง\n${name}\n${phone}`;
  window.location.href=`https://line.me/R/msg/text/?${encodeURIComponent(msg)}`;
