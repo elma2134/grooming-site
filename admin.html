@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Admin Dashboard</title>
-
+ 
+<script>
+if(localStorage.getItem("admin") !== "true"){
+ window.location.href="login.html";
+}
+</script>
+ 
 <style>
 body{
  font-family:Arial;
@@ -55,10 +61,19 @@ async function loadData(){
     <b>${item.name}</b><br>
     📞 ${item.phone}<br>
     🕒 ${item.time}<br>
+    🕒 ${item.breed}<br>
     📌 ${item.status}
   </div>
   `;
  });
+ <button onclick="logout()">Logout</button>
+
+<script>
+function logout(){
+ localStorage.removeItem("admin");
+ window.location.href="login.html";
+}
+</script>
 }
 
 // auto refresh
