@@ -206,6 +206,17 @@ function bookNow(){
   return;
  }
 
+ // ✅ ส่งเข้า Google Sheet
+ fetch("https://script.google.com/macros/s/AKfycbxcRH_UmS_MGKaWzmGoi5SfhpBrOI9rTLP78PWnOf19BPbMPfI3PIuTwEWXSodnaphr/exec",{
+  method:"POST",
+  body: JSON.stringify({
+    name,
+    phone,
+    status:"รอคิว",
+    time:new Date().toLocaleString()
+  })
+ });
+
  const msg=`จอง\n${name}\n${phone}`;
  window.location.href=`https://line.me/R/msg/text/?${encodeURIComponent(msg)}`;
 }
