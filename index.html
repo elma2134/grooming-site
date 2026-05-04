@@ -1,12 +1,31 @@
 <!DOCTYPE html>
+
 <html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Grooming Spa</title>
 
+<!-- Facebook Pixel -->
+
+<script>
+!function(f,b,e,v,n,t,s){
+ if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+ n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+ if(!f._fbq)f._fbq=n;
+ n.push=n;n.loaded=!0;n.version='2.0';
+ n.queue=[];t=b.createElement(e);t.async=!0;
+ t.src=v;s=b.getElementsByTagName(e)[0];
+ s.parentNode.insertBefore(t,s)
+}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', 'https://www.facebook.com/happycatspagrooming?rdid=r8XARdx1gBzWiRDX&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1DSTrg8ekP%2F#'); 
+fbq('track', 'PageView');
+</script>
+
 <style>
-body{font-family:Arial;margin:0;background:#fff;color:#333}
+body{font-family:'Segoe UI',Arial;margin:0;background:#fff;color:#333;padding-top:40px}
 
 /* TOP BAR */
 #topbar{
@@ -15,89 +34,72 @@ body{font-family:Arial;margin:0;background:#fff;color:#333}
  text-align:center;padding:8px;
  font-size:14px;z-index:9999;
 }
-body{padding-top:40px;}
 
 /* HERO */
 .hero{
- background:linear-gradient(90deg,#ffd6e7,#cceeff);
+ background:linear-gradient(120deg,#ffe4ec,#e6f7ff);
  text-align:center;padding:60px 20px;
+ border-radius:0 0 30px 30px;
 }
 .hero h1{font-size:28px;margin:10px 0}
 .price{font-size:26px;font-weight:bold}
+
 .btn{
  background:#06C755;color:white;
  padding:15px 25px;border-radius:30px;
  text-decoration:none;display:inline-block;margin-top:10px;
- animation:pulse 1.5s infinite;
+ box-shadow:0 5px 15px rgba(0,0,0,0.15);
 }
-@keyframes pulse{
- 50%{transform:scale(1.05)}
+
+/* FB BTN */
+.fb-btn{
+ background:#1877f2;
+ color:white;
+ padding:12px 22px;
+ border-radius:30px;
+ text-decoration:none;
+ display:inline-block;
+ margin-top:10px;
 }
 
 /* SECTION */
-section{padding:30px;text-align:center}
+section{
+ background:white;
+ margin:20px;
+ padding:25px;
+ border-radius:20px;
+ box-shadow:0 10px 30px rgba(0,0,0,0.05);
+ text-align:center;
+}
 h2{color:#ff8fc4}
-
-/* GALLERY */
-.gallery-wrap{overflow:hidden;padding:10px 0;}
-.track{
- display:flex;
- gap:12px;
- width:max-content;
- animation:scrollLoop 25s linear infinite;
-}
-@keyframes scrollLoop{
- 100%{transform:translateX(-50%)}
-}
-.card{
- width:250px;
- aspect-ratio:3/4;
- border-radius:18px;
- overflow:hidden;
- position:relative;
- flex-shrink:0;
- box-shadow:0 8px 18px rgba(0,0,0,0.1);
- transition:0.3s;
-}
-.card img{
- width:100%;height:100%;object-fit:cover;
-}
-.card:hover{transform:translateY(-6px)}
-.card::after{
- content:'';
- position:absolute;bottom:0;width:100%;height:60%;
- background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);
-}
-.caption{
- position:absolute;bottom:10px;left:10px;right:10px;
- color:white;font-size:13px;
-}
-.badge{
- position:absolute;top:10px;left:10px;
- background:#ff8fc4;color:white;
- padding:5px 8px;font-size:10px;border-radius:10px;
-}
-.track:hover{animation-play-state:paused}
 
 /* REVIEW */
 .review{
- background:#fff0f5;padding:10px;margin:10px auto;
+ background:white;
+ border:1px solid #ffe0ea;
+ padding:10px;margin:10px auto;
  border-radius:10px;max-width:300px;
 }
 
 /* FLOAT BTN */
-.fab{ position:fixed;bottom:15px;right:15px; background:#06C755;color:white; padding:15px;border-radius:50%; font-size:20px; 
-}
-.fab-call{
+.fab{ position:fixed;bottom:15px;right:15px;background:#06C755;color:white;padding:15px;border-radius:50%;}
+.fab-call{position:fixed;bottom:80px;right:20px;background:#ff4d6d;color:white;padding:15px;border-radius:50%;}
+
+/* STICKY CTA */
+#stickyCTA{
  position:fixed;
- bottom:80px; /* สูงกว่า LINE */
- right:20px;
- background:#ff4d6d;
- color:white;
+ bottom:0;
+ width:100%;
+ background:#06C755;
+ text-align:center;
  padding:15px;
- border-radius:50%;
- font-size:20px;
- box-shadow:0 5px 15px rgba(0,0,0,0.2);
+ z-index:9999;
+}
+#stickyCTA a{
+ color:white;
+ font-size:18px;
+ text-decoration:none;
+ font-weight:bold;
 }
 
 /* POPUP */
@@ -109,209 +111,116 @@ h2{color:#ff8fc4}
  display:none;
 }
 </style>
+
 </head>
 
 <body>
 
 <div id="topbar">
-🔥 วันนี้เหลือ <span id="slot">4</span> คิวเท่านั้น!
+🔥 วันนี้เหลือ <span id="slot">4</span> คิว!
 </div>
 
-<!-- HERO -->
 <div class="hero">
-<h1>🐶 อาบน้ำ ตัดขน น้องหมา-แมว 🐱</h1>
+<h1>🐶 อาบน้ำ ตัดขน 🐱</h1>
 <p>สะอาด หอม น่ารักขึ้นทันที</p>
 <div class="price">เริ่มต้น 250 บาท</div>
-<a href="https://line.me/R/ti/p/@groomingspa" class="btn">จองคิวตอนนี้</a>
 
-<div style="margin-top:10px;font-size:14px;">
-👀 มี <b id="viewer">7</b> คน กำลังดูอยู่
-</div>
-</div>
-
-<!-- GALLERY -->
-<section>
-<h2>ผลงานจริงจากลูกค้า</h2>
-<div class="gallery-wrap">
-<div class="track">
-
-<!-- CARD x2 (loop) -->
-<div class="card"><img src="images/dog1.jpg"><div class="badge">⭐ 5 ดาว</div><div class="caption">หล่อขึ้นทันที</div></div>
-<div class="card"><img src="images/cat1.jpg"><div class="badge">💯 ลูกค้าชอบ</div><div class="caption">น่ารัก กลิ่นหอม</div></div>
-<div class="card"><img src="images/dog2.jpg"><div class="badge">🔥 ฮิต</div><div class="caption">ขนนุ่ม ฟูมาก</div></div>
-<div class="card"><img src="images/cat2.jpg"><div class="badge">✨ แนะนำ</div><div class="caption">สไตล์เท่ๆ</div></div>
-<div class="card"><img src="images/dog3.jpg"><div class="badge">🔥 สงกรานต์</div><div class="caption">น่ารักมั้ยยย</div></div>
-<div class="card"><img src="images/cat3.jpg"><div class="badge">✨ สงกรานต์</div><div class="caption">ระวังโดนยิงนะ</div></div>
-<div class="card"><img src="images/dog4.jpg"><div class="badge">🔥 เยี่ยม</div><div class="caption">พี่เท่มั้ย</div></div>
-<div class="card"><img src="images/cat4.jpg"><div class="badge">✨ แนะนำ</div><div class="caption">สไตล์ไทย</div></div>
-
-<div class="card"><img src="images/dog1.jpg"><div class="badge">⭐ 5 ดาว</div><div class="caption">หล่อขึ้นทันที</div></div>
-<div class="card"><img src="images/cat1.jpg"><div class="badge">💯 ลูกค้าชอบ</div><div class="caption">น่ารัก กลิ่นหอม</div></div>
-<div class="card"><img src="images/dog2.jpg"><div class="badge">🔥 ฮิต</div><div class="caption">ขนนุ่ม ฟูมาก</div></div>
-<div class="card"><img src="images/cat2.jpg"><div class="badge">✨ แนะนำ</div><div class="caption">สไตล์เท่ๆ</div></div>
-<div class="card"><img src="images/dog3.jpg"><div class="badge">🔥 สงกรานต์</div><div class="caption">น่ารักมั้ยยย</div></div>
-<div class="card"><img src="images/cat3.jpg"><div class="badge">✨ สงกรานต์</div><div class="caption">ระวังโดนยิงนะ</div></div>
-<div class="card"><img src="images/dog4.jpg"><div class="badge">🔥 เยี่ยม</div><div class="caption">พี่เท่มั้ย</div></div>
-<div class="card"><img src="images/cat4.jpg"><div class="badge">✨ แนะนำ</div><div class="caption">สไตล์ไทย</div></div>
-
-</div>
-</div>
-</section>
-
-<!-- REVIEW -->
-<section>
-<h2>รีวิวลูกค้า</h2>
-<div class="review">⭐⭐⭐⭐⭐ บริการดีมาก</div>
-<div class="review">⭐⭐⭐⭐⭐ น้องไม่เครียด</div>
-<div class="review">⭐⭐⭐⭐⭐ ใช้บริการซ้ำแน่นอน</div>
-</section>
-
-<section>
-<h2>📍 ร้านอยู่บางขุนเทียน</h2>
-
-<iframe 
- src="https://www.google.com/maps?q=13.6381385,100.4402248&output=embed"
- width="100%" 
- height="250" 
- style="border:0;border-radius:15px;"
- allowfullscreen=""
- loading="lazy">
-</iframe>
-
-<div style="margin-top:10px;">
-<a href="https://maps.google.com/?q=13.6381385,100.4402248" 
-target="_blank"
-style="
- display:inline-block;
- background:#ff4d6d;
- color:white;
- padding:10px 18px;
- border-radius:25px;
- text-decoration:none;
- font-size:14px;
-">
-📍 เปิดใน Google Maps
-</a>
-</div>
-<p style="font-size:14px;color:#666;">
-ใกล้พระราม 2 • มีที่จอดรถ • เดินทางสะดวก
-</p>
-</section>
-<!-- FORM -->
-<section>
-<h2>📲 จองคิวตอนนี้</h2>
-
-<input id="name" placeholder="ชื่อ" style="padding:10px;margin:5px"><br>
-<input id="phone" placeholder="เบอร์โทร" style="padding:10px;margin:5px"><br>
-
-<select id="Breed" style="padding:10px;margin:5px">
-<option>หมา</option>
-<option>แมวขนสั้น</option>
-<option>แมวขนยาว</option>
-</select>
-
-<select id="service" style="padding:10px;margin:5px">
-<option>อาบน้ำ</option>
-<option>ตัดขน</option>
-<option>อาบน้ำ + ตัดขน</option>
-<option>อาบน้ำ + ไถขน</option>
-</select>
+<a href="https://line.me/R/ti/p/@groomingspa" class="btn"
+onclick="fbq('trackCustom','LineClick')">จองผ่าน LINE</a>
 
 <br>
+<a href="https://facebook.com/ชื่อเพจคุณ" target="_blank" class="fb-btn"
+onclick="fbq('trackCustom','FBClick')">📘 Facebook</a>
+
+<div style="margin-top:15px;font-size:13px;color:#666;">
+⭐ รีวิวจริง • ใช้ของพรีเมียม • ปลอดภัย
+</div>
+
+<div id="countdown" style="margin-top:10px;color:#ff4d6d;">
+⏳ โปรหมดใน: <span id="time">05:00</span>
+</div>
+</div>
+
+<section>
+<h2>รีวิวลูกค้า</h2>
+<div class="review">⭐⭐⭐⭐⭐ ดีมาก</div>
+<div class="review">⭐⭐⭐⭐⭐ น้องไม่เครียด</div>
+</section>
+
+<!-- FACEBOOK PAGE -->
+
+<section>
+<h2>📘 Facebook</h2>
+<div class="fb-page"
+data-href="https://www.facebook.com/ชื่อเพจคุณ"
+data-tabs="timeline"
+data-width="340"
+data-height="400">
+</div>
+</section>
+
+<!-- FORM -->
+
+<section>
+<h2>จองคิว</h2>
+<input id="name" placeholder="ชื่อ"><br>
+<input id="phone" placeholder="เบอร์"><br>
 <button onclick="bookNow()" class="btn">ยืนยันจอง</button>
 </section>
 
-<br><br>
-<a href="tel:096-137-2568" 
-style="
- display:inline-block;
- background:#ff4d6d;
- color:white;
- padding:12px 20px;
- border-radius:25px;
- text-decoration:none;
-">
-📞 โทรจองด่วน
-</a>
+<a href="tel:0961372568" class="fab-call"
+onclick="fbq('trackCustom','CallClick')">📞</a>
 
-<!-- FLOAT -->
-<a href="https://line.me/R/ti/p/@groomingspa" class="fab">💬</a>
-<a href="tel:0961372568" class="fab-call">📞</a>
+<a href="https://line.me/R/ti/p/@groomingspa" class="fab"
+onclick="fbq('trackCustom','LineClick')">💬</a>
 
-<!-- POPUP -->
 <div id="popup"></div>
 
+<div id="stickyCTA">
+<a href="https://line.me/R/ti/p/@groomingspa"
+onclick="fbq('trackCustom','LineClick')">
+💬 จองคิวตอนนี้
+</a>
+</div>
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+src="https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v18.0">
+</script>
+
 <script>
-// ===== VIEWER =====
+// COUNTDOWN
+let time=300;
 setInterval(()=>{
- document.getElementById('viewer').innerText = Math.floor(Math.random()*5)+5;
-},5000);
-
-// ===== SLOT =====
-let slot=3;
-setInterval(()=>{
- if(slot>1){
-  slot--;
-  document.getElementById('slot').innerText=slot;
+ if(time>0){
+  time--;
+  let m=Math.floor(time/60);
+  let s=time%60;
+  document.getElementById('time').innerText=`${m}:${s<10?'0'+s:s}`;
  }
-},20000);
+},1000);
 
-// ===== POPUP =====
-const servicesList=['อาบน้ำ','ตัดขน','อาบน้ำ+ตัดขน'];
-function showPopup(){
+// POPUP
+const names=["สมชาย","น้ำ","ฟ้า","เจน"];
+const services=["อาบน้ำ","ตัดขน"];
+setInterval(()=>{
  const popup=document.getElementById('popup');
- popup.innerHTML=`🐶 มีลูกค้าจอง ${servicesList[Math.floor(Math.random()*3)]}`;
+ popup.innerHTML=`🐶 ${names[Math.floor(Math.random()*4)]} จองเมื่อกี้`;
  popup.style.display='block';
+ setTimeout(()=>popup.style.display='none',3000);
+},9000);
 
- setTimeout(()=>{
-  popup.style.display='none';
- },3000);
-}
-setInterval(showPopup,8000);
-
-// ===== BOOKING FUNCTION =====
+// BOOK
 function bookNow(){
- const name=document.getElementById('name').value.trim();
- const phone=document.getElementById('phone').value.trim();
- const service=document.getElementById('service').value;
- const breed=document.getElementById('Breed').value;
+ const name=document.getElementById('name').value;
+ const phone=document.getElementById('phone').value;
 
- if(!name || !phone){
-  alert("กรอกข้อมูลให้ครบ");
-  return;
- }
+ if(!name||!phone){alert("กรอกข้อมูล");return;}
 
- // ===== สร้างข้อความ =====
- const message = 
-`🐶 จองคิว Grooming
-👤 ชื่อ: ${name}
-📞 เบอร์: ${phone}
-🐾 ประเภท: ${breed}
-✂️ บริการ: ${service}`;
+ fbq('track','Purchase',{value:250,currency:'THB'});
 
- const encoded = encodeURIComponent(message);
-
- // ===== ส่งเข้า Google Sheet =====
- fetch("https://script.google.com/macros/s/AKfycbwZKHA8FOif818y2iX8y37xuM2vfUptb04Ry36pyzBQnlbUYUPbvz0McSlGRYHrrsCD/exec",{
-  method:"POST",
-  body: JSON.stringify({name,phone,service,breed})
- });
-
- // ===== popup feedback =====
- const popup=document.getElementById('popup');
- popup.innerHTML="✅ กำลังเปิด LINE...";
- popup.style.display='block';
-
- // ===== ล้างฟอร์ม =====
- document.getElementById('name').value="";
- document.getElementById('phone').value="";
- document.getElementById('service').selectedIndex=0;
- document.getElementById('Breed').selectedIndex=0;
-
- // ===== เปิด LINE =====
- setTimeout(()=>{
-  window.location.href = `https://line.me/R/msg/text/?${encoded}`;
- },800);
+ const msg=`จอง\n${name}\n${phone}`;
+ window.location.href=`https://line.me/R/msg/text/?${encodeURIComponent(msg)}`;
 }
 </script>
 
